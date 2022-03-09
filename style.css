@@ -1,0 +1,51 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: comfortaa, sans-serif;
+    min-height: 100vh;
+    background-color: navajowhite;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto 1fr;
+}
+header{
+    background-color: burlywood;
+    padding: 2rem;
+    text-align: center;
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+.enemy{
+    grid-row-start: 2;
+    grid-column-start: 2;
+    display: none;
+}
+.ship-factory{
+    grid-row-start: 2;
+    grid-column-start: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4rem;
+    background-color: bisque;
+}
+.block{
+    background-color: brown;
+    height: 2rem;
+    width: 2rem;
+    border: 2px solid black;
+}
+.player-board, .enemy-board{
+    display: grid;
+    grid-template-columns: repeat(10,1fr);
+    grid-template-rows: repeat(10,1fr);
+    height: 60vh;
+    width: 30vw;
+}
+.cell{
+    background-color: aquamarine;
+    border: 1px solid black;
+}

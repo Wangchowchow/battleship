@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>battleship</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/151f073338.js" crossorigin="anonymous"></script>
+    <script src="main.js" defer></script>
+</head>
+<body>
+    <header><h1><i class="fa-solid fa-ship"></i>Battleship</h1></header>
+    <div class="player">
+        <h3>Your Board</h3>
+        <div class="player-board"></div>
+    </div>
+    <div class="ship-factory">
+        <div class="ship" id="transporter" draggable="true">
+            <div class="block"></div>
+            <div class="block"></div>
+            <div class="block"></div>
+            <div class="block"></div>
+            <div class="block"></div>
+        </div>
+        <div class="ship" id="battleship" draggable="true">
+            <div class="block"></div>
+            <div class="block"></div>
+            <div class="block"></div>
+            <div class="block"></div>
+        </div>
+        <div class="ship" id="submarine" draggable="true">
+            <div class="block"></div>
+            <div class="block"></div>
+            <div class="block"></div>
+        </div>
+        <div class="ship" id="destroyer" draggable="true">
+            <div class="block"></div>
+            <div class="block"></div>
+            <div class="block"></div>
+        </div>
+        <div class="ship" id="scout" draggable="true">
+            <div class="block"></div>
+            <div class="block"></div>
+        </div>
+    </div>
+    <div class="enemy">
+        <h3>Enemy's Board</h3>
+        <div class="enemy-board"></div>
+    </div>
+    <div class="winner-container">
+        <div class="winner"></div>
+        <button class="play-again"></button>
+    </div>
+</body>
+</html>
