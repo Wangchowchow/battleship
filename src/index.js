@@ -10,7 +10,7 @@ const submarineInput = document.querySelector("#submarine");
 const destroyerInput = document.querySelector("#destroyer");
 const scoutInput = document.querySelector("#scout");
 const enemySide = document.querySelector(".enemy");
-const winnerContainer = document.querySelector(".winner-container");
+const gameOver = document.querySelector(".game-over");
 const winnerIs = document.querySelector(".winner");
 const playAgainButton = document.querySelector(".play-again");
 
@@ -60,8 +60,8 @@ function randomizeShipPosition(ship) {
     }
 }
 
-function dragShip(element) {
-    element.addEventListener("dragstart", (e) => {
+function dragShip(ship) {
+    ship.addEventListener("dragstart", (e) => {
         e.dataTransfer.setData("text/plain", e.target.id);
     })
 }
@@ -167,16 +167,16 @@ function attackEvent(coordinate) {
     render("enemy-board", enemyBoard);
     coordinate.style.pointerEvents = "none";
     if (enemyBoard.isGameOver()) {
-        announceWinner("You Win");
+        announceWinner("You Win!");
     }
     enemy.generateRandomAttack();
     render("player-board", playerBoard);
     if (playerBoard.isGameOver()) {
-        announceWinner("Enemy Wins");
+        announceWinner("You Lose!");
     }
 }
 function announceWinner(text) {
-    winnerContainer.style.display = "block";
+    gameOver.style.display = "flex";
     winnerIs.textContent = text;
 }
 playAgainButton.addEventListener("click", () => {
@@ -189,12 +189,12 @@ function render(boardName, board) {
     boardArray.forEach((row, y) => {
         row.forEach((cell, x) => {
             if (cell.shipName) {
-                if (cell.shipName.checkHit(cell.shipName.getShip()[cell.shipIndex]) === true) {
+                if (cell.shipName.checkHit(cell.shipName.getShipArray()[cell.shipIndex]) === true) {
                     let thisCell = document.querySelector(`.${boardName} [data-x="${x}"][data-y="${y}"]`);
-                    thisCell.textContent = "X";
+                    thisCell.innerHTML = '<i class="fa-solid fa-xmark"></i>';
                     thisCell.classList.add("hit");
                     thisCell.classList.remove("occupied");
-                } else if (cell.shipName.checkHit(cell.shipName.getShip()[cell.shipIndex]) === false) {
+                } else if (cell.shipName.checkHit(cell.shipName.getShipArray()[cell.shipIndex]) === false) {
                     if (boardName === "player-board") {
                         let thisCell = document.querySelector(`.${boardName} [data-x="${x}"][data-y="${y}"]`);
                         thisCell.classList.add("occupied");
@@ -205,7 +205,7 @@ function render(boardName, board) {
     })
     missedHitsArray.forEach((hit) => {
         let thisCell = document.querySelector(`.${boardName} [data-x="${hit.x}"][data-y="${hit.y}"]`);
-        thisCell.textContent = "X";
+        thisCell.innerHTML = '<i class="fa-solid fa-xmark"></i>';
         thisCell.classList.add("missed");
     })
 }
